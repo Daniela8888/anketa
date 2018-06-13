@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Anketa</title>
+</head>
+
+
+
+
+<body>
+<form id='form' name="abc" method="GET" action="anketa.php">
+    <div class="header">Aké je vaše obľúbené jedlo?</div>
+        
+        <div>
+            <input type="radio" name="anketa" value='pizza' id="pizza"><span>Pizza</span></div>
+        
+        <div>
+            <input type="radio" name="anketa" value='špagety' id="špagety"><span>Špagety</span></div>
+        
+        <div>
+            <input type="radio" name="anketa" value='halušky' id="halušky"><span>Halušky</span></div>
+        
+<div>
+    <input type="radio" name="anketa" value='rezeň' id="rezeň"><span>Rezeň</span></div>
+        
+        <div>
+            <input type="radio" name="anketa" value='šalát' id="šalát"><span>Šalát</span></div>
+       
+        <div>
+            <input type="checkbox" name="checkbox" id="messageCheckbox"><span>Suhlasím so spracovanim osobných údajov.</span></div>
+       
+        <input type="submit" name='buttonSend' value='Send' id="send" disabled>
+
+    </form>
+    
+    
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script >
+
+        function getCookie(key) {
+            var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+            return keyValue ? keyValue[2] : null;
+        }
+
+        var radio = false,
+            check = '',
+            isClicked = getCookie('clickedPHP');
+
+        $('input:radio[name="anketa"]').change(function(){
+            radio = true;
+        });
+
+        $('input:checkbox[name="checkbox"]').change(function(){
+            check = $('#messageCheckbox:checked').val();
+        });
+
+        $("#form").change(function(){
+            if(radio === true && check === 'on' && isClicked == null){
+                $('#send').prop('disabled',false);
+            }
+            else {
+                $('#send').prop('disabled',true);
+            }
+        });
+
+    </script>
+</body>
+</html>
